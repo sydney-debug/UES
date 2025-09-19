@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>UniEats - Student Food Ordering</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-container">
+      <span class="logo">Uni<span>Eats</span></span>
+
+      <!-- Hamburger Icon -->
+      <span class="menu-toggle" onclick="toggleMenu()">☰</span>
+
+      <!-- Nav Links -->
+      <div class="nav-links" id="navLinks">
+        <a href="#order">Order</a>
+        <a href="#restaurants">Restaurants</a>
+        <a href="#offers">Offers</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Order/Search Bar -->
+  <div class="order-bar" id="order">
+    <h2>Order Your Meal 🍲</h2>
+    <input type="text" placeholder="Search meals, hotels or restaurants...">
+    <button>Search</button>
+  </div>
+
+  <!-- Restaurant Locations -->
+  <section id="restaurants">
+    <h2>Nearby Restaurants & Hotels 📍</h2>
+    <div class="card">
+      <h3>Campus Grill</h3>
+      <p>Location: Nairobi University</p>
+      <p>Specialty: Fast Food & Burgers</p>
+    </div>
+    <div class="card">
+      <h3>Golden Spoon</h3>
+      <p>Location: Kenyatta University</p>
+      <p>Specialty: African Dishes</p>
+    </div>
+    <div class="card">
+      <h3>Lakeview Hotel</h3>
+      <p>Location: Egerton University</p>
+      <p>Specialty: Buffet Meals</p>
+    </div>
+  </section>
+
+  <!-- Hotel Offers -->
+  <section id="offers">
+    <h2>What Hotels Offer 🍛</h2>
+    <div class="card">
+      <h3>Campus Grill</h3>
+      <p>Chicken Burger Combo</p>
+      <p class="price">KES 350</p>
+    </div>
+    <div class="card">
+      <h3>Golden Spoon</h3>
+      <p>Ugali + Beef Stew</p>
+      <p class="price">KES 250</p>
+    </div>
+    <div class="card">
+      <h3>Lakeview Hotel</h3>
+      <p>Rice + Chicken Curry</p>
+      <p class="price">KES 400</p>
+    </div>
+  </section>
+
+  <!-- JS for Hamburger Menu -->
+  <script>
+    function toggleMenu() {
+      const navLinks = document.getElementById("navLinks");
+      navLinks.classList.toggle("show");
+    }
+  </script>
+
+</body>
+</html>
