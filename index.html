@@ -11,15 +11,12 @@
   <nav>
     <div class="nav-container">
       <span class="logo">Uni<span>Eats</span></span>
-
-      <!-- Hamburger Icon -->
       <span class="menu-toggle" onclick="toggleMenu()">☰</span>
-
-      <!-- Nav Links -->
       <div class="nav-links" id="navLinks">
         <a href="#order">Order</a>
         <a href="#restaurants">Restaurants</a>
         <a href="#offers">Offers</a>
+        <a href="#post">Post Meal</a>
       </div>
     </div>
   </nav>
@@ -27,57 +24,161 @@
   <!-- Order/Search Bar -->
   <div class="order-bar" id="order">
     <h2>Order Your Meal 🍲</h2>
-    <input type="text" placeholder="Search meals, hotels or restaurants...">
-    <button>Search</button>
+    <input type="text" id="search" placeholder="Search meals, hotels or restaurants...">
+    <button onclick="searchMeals()">Search</button>
   </div>
 
-  <!-- Restaurant Locations -->
+  <!-- Restaurants -->
   <section id="restaurants">
     <h2>Nearby Restaurants & Hotels 📍</h2>
     <div class="card">
+      <img src="images/campus-grill.jpg" alt="Campus Grill Hotel">
       <h3>Campus Grill</h3>
       <p>Location: Nairobi University</p>
       <p>Specialty: Fast Food & Burgers</p>
     </div>
     <div class="card">
+      <img src="images/golden-spoon.jpg" alt="Golden Spoon Hotel">
       <h3>Golden Spoon</h3>
       <p>Location: Kenyatta University</p>
       <p>Specialty: African Dishes</p>
     </div>
     <div class="card">
+      <img src="images/lakeview.jpg" alt="Lakeview Hotel">
       <h3>Lakeview Hotel</h3>
       <p>Location: Egerton University</p>
       <p>Specialty: Buffet Meals</p>
     </div>
   </section>
 
-  <!-- Hotel Offers -->
+  <!-- Offers -->
   <section id="offers">
     <h2>What Hotels Offer 🍛</h2>
-    <div class="card">
-      <h3>Campus Grill</h3>
-      <p>Chicken Burger Combo</p>
-      <p class="price">KES 350</p>
-    </div>
-    <div class="card">
-      <h3>Golden Spoon</h3>
-      <p>Ugali + Beef Stew</p>
-      <p class="price">KES 250</p>
-    </div>
-    <div class="card">
-      <h3>Lakeview Hotel</h3>
-      <p>Rice + Chicken Curry</p>
-      <p class="price">KES 400</p>
+    <div class="offers-container" id="offersContainer">
+      <div class="card">
+        <img src="images/burger.jpg" alt="Burger Combo">
+        <h3>Campus Grill</h3>
+        <p>Chicken Burger Combo</p>
+        <p class="price">KES 350</p>
+      </div>
+      <div class="card">
+        <img src="images/ugali-beef.jpg" alt="Ugali Beef Stew">
+        <h3>Golden Spoon</h3>
+        <p>Ugali + Beef Stew</p>
+        <p class="price">KES 250</p>
+      </div>
+      <div class="card">
+        <img src="images/rice-chicken.jpg" alt="Rice Chicken Curry">
+        <h3>Lakeview Hotel</h3>
+        <p>Rice + Chicken Curry</p>
+        <p class="price">KES 400</p>
+      </div>
     </div>
   </section>
 
-  <!-- JS for Hamburger Menu -->
+  <!-- Post Meal Form -->
+  <section id="post">
+    <h2>Hotels: Post Your Food 📝</h2>
+    <form id="mealForm">
+      <input type="text" id="hotelName" placeholder="Hotel Name" required><br>
+      <input type="text" id="foodName" placeholder="Food Name" required><br>
+      <input type="number" id="price" placeholder="Price (KES)" required><br>
+      <input type="file" id="foodImage" accept="image/*"><br>
+      <button type="submit">Post Meal</button>
+    </form>
+  </section>
+
+  <!-- JavaScript -->
   <script>
+    // Hamburger menu
     function toggleMenu() {
       const navLinks = document.getElementById("navLinks");
       navLinks.classList.toggle("show");
     }
+
+    // Form submission (add meal instantly)
+    document.getElementById("mealForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const hotelName = document.getElementById("hotelName").value;
+      const foodName = document.getElementById("foodName").value;
+      const price = document.getElementById("price").value;
+      const imageFile = document.getElementById("foodImage").files[0];
+
+      const reader = new FileReader();
+      reader.onload = function(event) {
+        const newCard = document.createElement("div");
+        newCard.classList.add("card");
+        newCard.innerHTML = `
+          <img src="${event.target.result}" alt="${foodName}">
+          <h3>${hotelName}</h3>
+          <p>${foodName}</p>
+          <p class="price">KES ${price}</p>
+        `;
+        document.getElementById("offersContainer").appendChild(newCard);
+      };
+
+      if (imageFile) {
+        reader.readAsDataURL(imageFile);
+      }
+
+      // Reset form
+      document.getElementById("mealForm").reset();
+    });
   </script>
 
 </body>
 </html>
+<script>
+  // Hamburger menu
+  function toggleMenu() {
+    const navLinks = document.getElementById("navLinks");
+    navLinks.classList.toggle("show");
+  }
+
+  // Form submission (add meal instantly)
+  document.getElementById("mealForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const hotelName = document.getElementById("hotelName").value;
+    const foodName = document.getElementById("foodName").value;
+    const price = document.getElementById("price").value;
+    const imageFile = document.getElementById("foodImage").files[0];
+
+    const reader = new FileReader();
+    reader.onload = function(event) {
+      const newCard = document.createElement("div");
+      newCard.classList.add("card");
+      newCard.innerHTML = `
+        <img src="${event.target.result}" alt="${foodName}">
+        <h3>${hotelName}</h3>
+        <p class="food-name">${foodName}</p>
+        <p class="price">KES ${price}</p>
+      `;
+      document.getElementById("offersContainer").appendChild(newCard);
+    };
+
+    if (imageFile) {
+      reader.readAsDataURL(imageFile);
+    }
+
+    document.getElementById("mealForm").reset();
+  });
+
+  // 🔍 Search function
+  function searchMeals() {
+    const searchInput = document.getElementById("search").value.toLowerCase();
+    const cards = document.querySelectorAll("#offersContainer .card");
+
+    cards.forEach(card => {
+      const foodName = card.querySelector(".food-name")?.textContent.toLowerCase() || "";
+      const hotelName = card.querySelector("h3")?.textContent.toLowerCase() || "";
+      
+      if (foodName.includes(searchInput) || hotelName.includes(searchInput)) {
+        card.style.display = "inline-block";
+      } else {
+        card.style.display = "none";
+      }
+    });
+  }
+</script>

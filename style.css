@@ -12,7 +12,6 @@ body {
   font-size: 24px;
   font-weight: bold;
   color: #2c3e50;
-  letter-spacing: 2px;
 }
 
 .logo span {
@@ -40,14 +39,12 @@ nav {
   text-decoration: none;
   margin: 0 15px;
   font-weight: 500;
-  transition: color 0.3s;
 }
 
 .nav-links a:hover {
   color: #e67e22;
 }
 
-/* Hamburger Icon */
 .menu-toggle {
   display: none;
   font-size: 26px;
@@ -70,9 +67,8 @@ nav {
   width: 60%;
   max-width: 400px;
   padding: 12px;
-  border: 1px solid #ccc;
   border-radius: 6px;
-  outline: none;
+  border: 1px solid #ccc;
 }
 
 .order-bar button {
@@ -82,7 +78,6 @@ nav {
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  font-weight: bold;
   margin-left: 10px;
 }
 
@@ -100,30 +95,24 @@ section h2 {
   color: #2c3e50;
 }
 
-/* Cards */
+/* Cards with Images */
 .card {
   background: white;
   padding: 20px;
   margin: 15px;
   display: inline-block;
-  width: 250px;
+  width: 260px;
   border-radius: 10px;
   box-shadow: 0px 2px 8px rgba(0,0,0,0.1);
   vertical-align: top;
-  transition: transform 0.2s ease-in-out;
 }
 
-.card:hover {
-  transform: scale(1.03);
-}
-
-.card h3 {
-  margin-top: 0;
-  color: #2c3e50;
-}
-
-.card p {
-  color: #555;
+.card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
 }
 
 .price {
@@ -131,7 +120,35 @@ section h2 {
   font-weight: bold;
 }
 
-/* 📱 Responsive */
+/* Post Form */
+form {
+  margin-top: 20px;
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  display: inline-block;
+}
+
+form input, form button {
+  padding: 12px;
+  margin: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+form button {
+  background: #e67e22;
+  color: white;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+form button:hover {
+  background: #d35400;
+}
+
+/* Responsive */
 @media (max-width: 768px) {
   .nav-links {
     display: none;
@@ -142,30 +159,31 @@ section h2 {
     left: 0;
     width: 100%;
   }
-
   .nav-links.show {
     display: flex;
   }
-
-  .nav-links a {
-    margin: 15px 0;
-    text-align: center;
-  }
-
   .menu-toggle {
     display: block;
   }
-
-  .order-bar input[type="text"],
-  .order-bar button {
-    width: 90%;
-    margin: 5px auto;
-    display: block;
-  }
-
   .card {
     width: 90%;
-    display: block;
     margin: 15px auto;
   }
+}
+.logo {
+  font-size: 28px;
+  font-weight: bold;
+  color: #2c3e50;
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  width: 40px;
+  height: 40px;
+  margin-right: 8px;
+}
+
+.logo span {
+  color: #e67e22; /* Orange highlight */
 }
